@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Navbar } from "@/components/store/navbar";
 
 export default function NavbarClient({
@@ -22,5 +23,8 @@ export default function NavbarClient({
     signedOut: string;
   };
 }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
   return <Navbar locale={locale} labels={labels} />;
 }

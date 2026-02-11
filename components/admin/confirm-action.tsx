@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { useActionToast } from "@/components/admin/toast";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,7 +24,7 @@ export default function ConfirmAction({
   action: (formData: FormData) => Promise<{ ok?: boolean; message?: string }>;
   variant?: "destructive" | "default" | "outline";
 }) {
-  const [state, formAction] = useFormState(async (_: any, formData: FormData) => {
+  const [state, formAction] = useActionState(async (_: any, formData: FormData) => {
     return action(formData);
   }, {});
   useActionToast(state as any);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { useActionToast } from "@/components/admin/toast";
 
 type Row = {
@@ -20,7 +20,7 @@ export default function OrdersStatusForm({
   updateAction: (id: string, formData: FormData) => Promise<{ ok?: boolean; message?: string }>;
   labels: { customer: string; total: string; status: string; items: string; empty: string };
 }) {
-  const [state, formAction] = useFormState(async (_: any, formData: FormData) => {
+  const [state, formAction] = useActionState(async (_: any, formData: FormData) => {
     const id = String(formData.get("id") ?? "");
     return updateAction(id, formData);
   }, {});

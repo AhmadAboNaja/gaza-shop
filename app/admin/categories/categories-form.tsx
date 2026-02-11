@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { useActionToast } from "@/components/admin/toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,7 +20,7 @@ export default function CategoriesForm({
   deleteAction: (id: string) => Promise<FormState>;
   labels: { newCategory: string; add: string; delete: string; empty: string };
 }) {
-  const [state, formAction] = useFormState(createAction, {});
+  const [state, formAction] = useActionState(createAction, {});
   useActionToast(state);
 
   return (
