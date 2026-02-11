@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 import { ProductCard } from "@/components/store/product-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -29,7 +30,7 @@ export default async function StorePage({ searchParams }: StorePageProps) {
     orderBy: { name: "asc" },
   });
 
-  const where = {
+  const where: Prisma.ProductWhereInput = {
     ...(q
       ? {
           OR: [
