@@ -39,7 +39,10 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.role = (user as { role?: string }).role ?? "USER";
+        const role =
+          (user as { role?: "USER" | "ADMIN" }).role ??
+          ((user as any).role as "USER" | "ADMIN" | undefined);
+        token.role = role ?? "USER";
       }
       return token;
     },
